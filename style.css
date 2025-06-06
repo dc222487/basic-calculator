@@ -1,0 +1,106 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and layout */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.calculator-body { 
+    background-color: gray;
+    border-radius: 24px;
+    border: 3px solid black;
+    
+}
+
+/* Result Container */
+.result {
+    margin: 10px;
+    font-size: 2rem;
+    width: 320px;
+    height: 60px;
+    text-align: right;
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for numbers */
+.numbers-containers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;  /* Fix the width of the button container */
+    justify-content: space-between; /* Space out buttons */
+    margin: auto;
+}
+
+/* Styling for the number buttons */
+.numbers {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.5rem;
+    width: 70px; /* Set a fixed width for all buttons */
+    height: 70px; /* Set a fixed height */
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.numbers:hover {
+    background-color: #45a049;
+}
+
+.operator-container {
+    display:flex;
+    flex-wrap: wrap;
+    width: 300px;
+    justify-content: space-between;
+    margin: auto
+}
+/* Styling for the operator buttons */
+.operator {
+    background-color: #f4a261;
+    color: white;
+    font-size: 1.5rem;
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.operator:hover {
+    background-color: #e07b50;
+}
+
+/* Equal and Clear button */
+.operator.clear {
+    background-color: #e63946;
+}
+
+.operator.clear:hover {
+    background-color: #d52d2d;
+}
+
+.operator.equal {
+    background-color: #2a9d8f;
+}
+
+.operator.equal:hover {
+    background-color: #248f76;
+}

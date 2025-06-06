@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>calculator</title>
+</head>
+<body>
+    <div class="calculator-body">
+        <div class="result"></div>
+        <div class="numbers-containers">
+            <button class="numbers">1</button>
+            <button class="numbers">2</button>
+            <button class="numbers">3</button>
+            <button class="numbers">4</button>
+            <button class="numbers">5</button>
+            <button class="numbers">6</button>
+            <button class="numbers">7</button>
+            <button class="numbers">8</button>
+            <button class="numbers">9</button>
+            <button class="numbers">0</button>
+        </div>
+        <div class="operator-container">
+            <button class="operator">+</button>
+            <button class="operator">-</button>
+            <button class="operator">x</button>
+            <button class="operator">/</button>
+            <button class="operator equal">=</button>
+            <button class="operator clear">clear</button>
+        </div>
+    </div>
+    <script>
+        function add(x, y) {
+            return x + y;
+        }
+
+        function subtract(x, y) {
+            return x - y;
+        }
+
+        function multiply(x, y) { 
+            return x * y; 
+        }
+
+        function divide(x, y) { 
+            return x / y;
+        }
+
+        let currentNumber = '';  // Store current number input by user
+        let previousNumber = ''; // Store the previous number for operations
+        let currentOperator = ''; // Store the current operator
+
+        const numButtons = document.querySelectorAll(".numbers");
+        const operatorButtons = document.querySelectorAll(".operator");
+        const result = document.querySelector(".result");
+
+        // Handle number button clicks
+        numButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                currentNumber += button.textContent; // Add number to current number
+                result.textContent = currentNumber; // Update the display
+            });
+        });
+
+        // Handle operator button clicks
+        operatorButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const operator = button.textContent;
+                if (operator === "clear") {
+                    currentNumber = '';
+                    previousNumber = '';
+                    currentOperator = '';
+                    result.textContent = '';
+                } else if (operator === "=") {
+                    if (previousNumber && currentOperator) {
+                        // Perform calculation when "=" is clicked
+                        let num1 = parseFloat(previousNumber);
+                        let num2 = parseFloat(currentNumber);
+                        let calculatedResult;
+
+                        switch (currentOperator) {
+                            case '+':
+                                calculatedResult = add(num1, num2);
+                                break;
+                            case '-':
+                                calculatedResult = subtract(num1, num2);
+                                break;
+                            case 'x':
+                                calculatedResult = multiply(num1, num2);
+                                break;
+                            case '/':
+                                calculatedResult = divide(num1, num2);
+                                break;
+                        }
+
+                        result.textContent = calculatedResult; // Show result
+                        currentNumber = String(calculatedResult); // Allow chaining
+                        previousNumber = ''; // Reset for next calculation
+                        currentOperator = ''; // Reset operator
+                    }
+                } else {
+                    if (currentNumber) {
+                        // If a number exists, set it as the previous number and store the operator
+                        previousNumber = currentNumber;
+                        currentNumber = '';
+                        currentOperator = operator;
+                        result.textContent = operator; // Show current operator
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
